@@ -12,7 +12,7 @@ import br.edu.ifpb.umbumaker.model.Dispositivo;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @CrossOrigin("*")
 @RestController
@@ -29,7 +29,7 @@ public class DispositivoController {
     }
 
     @PutMapping("/{codigo}")
-    public ResponseEntity<Dispositivo> update(@PathVariable Long codigo, @RequestBody Dispositivo dispositivoModel, HttpServletRequest request){
+    public ResponseEntity<Dispositivo> update(@PathVariable(value = "codigo") Long codigo, @RequestBody Dispositivo dispositivoModel, HttpServletRequest request){
         var dispositivo = this.dispositivoService.findById(codigo).orElse(null);
         if(dispositivo == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -40,8 +40,8 @@ public class DispositivoController {
         return ResponseEntity.ok().body(dispositivoUpdate);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarDispositivo(@PathVariable Long codigo) {
+    @DeleteMapping("/{codigo}")
+    public ResponseEntity<Void> deletarDispositivo(@PathVariable(value = "codigo")  Long codigo) {
         try {
         	dispositivoService.deletarDispositivo(codigo);
             return ResponseEntity.noContent().build();

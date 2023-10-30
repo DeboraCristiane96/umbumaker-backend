@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import br.edu.ifpb.umbumaker.model.Insumo;
 
+import java.util.Optional;
+
 @Repository
 public interface InsumoRepository extends JpaRepository<Insumo, Long> {
-
+    Optional<Insumo> findById(Long codigo);
 }

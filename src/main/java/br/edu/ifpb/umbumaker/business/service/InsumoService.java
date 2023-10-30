@@ -1,7 +1,9 @@
 package br.edu.ifpb.umbumaker.business.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import br.edu.ifpb.umbumaker.model.Dispositivo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,8 +42,12 @@ public class InsumoService {
         insumoRepository.deleteById(codigo);
     }
 
+    public Optional<Insumo> findById(Long codigo){
+        return insumoRepository.findById(codigo);
+    }
+
     public List<Insumo> listarInsumos() {
         return insumoRepository.findAll();
     }
-    
+
 }
